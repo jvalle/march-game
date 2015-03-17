@@ -1,5 +1,3 @@
-var ECS = {};
-
 ECS.Entity = function Entity () {
     // generate a psuedo random ID
     this.id = (+new Date()).toString(16) + (Math.random() * 1000000 | 0).toString(16) + ECS.Entity.prototype._count++;
@@ -35,4 +33,3 @@ ECS.Entity.prototype.print = function print () {
 
     return this;
 };
-
