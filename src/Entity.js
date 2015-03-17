@@ -2,7 +2,7 @@ var ECS = {};
 
 ECS.Entity = function Entity () {
     // generate a psuedo random ID
-    this.id = (+new Date()).toString(16) + (Math.random() * 1000000 | 0).toString(16) + ECS.Entity.prototype._count;
+    this.id = (+new Date()).toString(16) + (Math.random() * 1000000 | 0).toString(16) + ECS.Entity.prototype._count++;
 
     this.components = {};
 
@@ -13,7 +13,6 @@ ECS.Entity.prototype._count = 0;
 
 ECS.Entity.prototype.addComponent = function addComponent (component) {
     // Add component data to the entity
-
     this.components[component.name] = component;
 
     return this;
