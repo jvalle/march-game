@@ -1,6 +1,8 @@
 // Organize components here -- could modularize if necessary
 
-ECS.Components.Appearance = function ComponentAppearance (opts) {
+var components = {};
+
+components.Appearance = function (opts) {
     var options = opts || {};
 
     this.colors = options.colors;
@@ -16,37 +18,39 @@ ECS.Components.Appearance = function ComponentAppearance (opts) {
 
     return this;
 }
-ECS.Components.Appearance.prototype.name = 'appearance';
+components.Appearance.prototype.name = 'appearance';
 
-ECS.Components.Health = function ComponentHealth (opts) {
+components.Health = function (opts) {
     var options = opts || {};
 
     this.value = options.value || 100;
 
     return this;
 };
-ECS.Components.Health.prototype.name = 'health';
+components.Health.prototype.name = 'health';
 
-ECS.Components.Position = function ComponentPosition (opts) {
+components.Position = function (opts) {
     var options = opts || {};
 
-    this.x = params.x || 20 + (Math.random() * (ECS.$canvas.width - 20) | 0);
-    this.y = params.y || 20 + (Math.random() * (ECS.$canvas.height - 20) | 0);
+    this.x = params.x || 20 + (Math.random() * (Game.$canvas.width - 20) | 0);
+    this.y = params.y || 20 + (Math.random() * (Game.$canvas.height - 20) | 0);
 
     return this;
 };
-ECS.Components.Health.prototype.name = 'position';
+components.Position.prototype.name = 'position';
 
-ECS.Components.PlayerControlled = function ComponentPlayerControlled () {
+components.PlayerControlled = function () {
     this.pc = true;
 
     return this;
 };
-ECS.Components.Health.prototype.name = 'playerControlled';
+components.PlayerControlled.prototype.name = 'playerControlled';
 
-ECS.Components.Collision = function ComponentCollision (opts) {
+components.Collision = function (opts) {
     this.collides = true;
 
     return this;
 };
-ECS.Components.Health.prototype.name = 'collision';
+components.Collision.prototype.name = 'collision';
+
+export default components;

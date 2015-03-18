@@ -1,22 +1,24 @@
-ECS.Entity = function Entity () {
+
+export default function Entity () {
     // generate a psuedo random ID
-    this.id = (+new Date()).toString(16) + (Math.random() * 1000000 | 0).toString(16) + ECS.Entity.prototype._count++;
+    this.id = (+new Date()).toString(16) + Entity.prototype._count++;
 
     this.components = {};
 
     return this;
 };
 
-ECS.Entity.prototype._count = 0;
+// a persistent count
+Entity.prototype._count = 0;
 
-ECS.Entity.prototype.addComponent = function addComponent (component) {
+Entity.prototype.addComponent = function (component) {
     // Add component data to the entity
     this.components[component.name] = component;
 
     return this;
 };
 
-ECS.Entity.prototype.removeComponent = function removeComponent (component) {
+Entity.prototype.removeComponent = function (component) {
     // Remove component data by removing the reference to it
     var name = component;
     if (typeof name === 'function') {
@@ -28,7 +30,7 @@ ECS.Entity.prototype.removeComponent = function removeComponent (component) {
     return this;
 };
 
-ECS.Entity.prototype.print = function print () {
+Entity.prototype.print = function () {
     console.log(JSON.stringify(this, null, 4));
 
     return this;
