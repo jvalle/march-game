@@ -1,0 +1,29 @@
+{
+  "name": "march-game",
+  "version": "1.0.0",
+  "description": "The repository which will one day, preferably before the end of March, hold my submission for March's game of the month club.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jvalle/march-game.git"
+  },
+  "author": "Jason Valle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jvalle/march-game/issues"
+  },
+  "homepage": "https://github.com/jvalle/march-game",
+  "devDependencies": {
+    "browserify": "^9.0.3",
+    "gulp": "^3.8.11",
+    "gulp-jshint": "^1.9.2",
+    "gulp-uglify": "^1.1.0",
+    "jshint": "^2.6.3",
+    "jshint-stylish": "^1.0.1",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}
