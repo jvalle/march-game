@@ -1,7 +1,7 @@
 import Render from 'Render';
 
-var Systems = {
+var systems = {
 	Render: Render
 };
 
-export default Systems;
+export default systems;

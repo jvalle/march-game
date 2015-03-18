@@ -2,6 +2,12 @@
 
 import Game from '../game.js';
 
+function clearCanvas () {
+    Game.context.save();
+    Game.context.clearRect(0, 0, Game.canvas.width, Game.canvas.height);
+    Game.context.restore();
+}
+
 export default = function (entities) {
     clearCanvas();
 
