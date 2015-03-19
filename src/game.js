@@ -28,8 +28,9 @@ var Game = {
             }
         }, 20);
 
-        this.assignSystems();
+        // this.assignSystems();
         this.running = true;
+        console.log(this.context);
         this.tick();
     },
 
@@ -75,20 +76,30 @@ var Game = {
 
     assignSystems: function () {
         // setup systems
-        if (!systems) throw new Error('You must have at least 1 system defined.')
+        if (!systems) throw new Error('You must have at least 1 system defined.');
+
+        console.log('systems', systems);
+
         for (var system in systems) {
-            this.runSys.push(system);
+            this.runSys.push(systems[system]);
         }
     },
 
     tick: function () {
+        var self = this;
         // TODO: create a controller layer that decides which entities go to which system
-        for (var i = 0; i < this.runSys.length; i++) {
-            this.runSys[i](this.entities);
+        // for (var i = 0; i < this.runSys.length; i++) {
+        //     this.runSys[i](this.entities);
+        // }
+
+        debugger;
+
+        for (var system in systems) {
+            systems[system](self.entities);
         }
 
-        if (this.running) {
-            window.requestAnimationFrame(this.tick);
+        if (self.running) {
+            window.requestAnimationFrame(self.tick);
         }
     },
 

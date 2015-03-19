@@ -5,9 +5,9 @@ var components = {};
 components.Appearance = function (opts) {
     var options = opts || {};
 
-    this.colors = options.colors;
-    if (!this.colors) {
-        this.colors = {
+    this.color = options.color;
+    if (!this.color) {
+        this.color = {
             r: 0,
             g: 100,
             b: 150
