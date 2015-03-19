@@ -8,7 +8,7 @@ function clearCanvas () {
     Game.context.restore();
 }
 
-export default = function (entities) {
+export default function (entities) {
     clearCanvas();
 
     var curEntity, curComps, fillStyle;
@@ -40,7 +40,6 @@ export default = function (entities) {
                 curComps.appearance.size * 2,
                 curComps.appearance.size * 2
             );
-
         }
     }
 };
