@@ -25,7 +25,8 @@ var Game = {
             'Position' : {
                 x: 20 + Math.random() * (this.canvas.width - 20) | 0,
                 y: 20 + Math.random() * (this.canvas.height - 20) | 0
-            }, 20);
+            }
+        }, 20);
 
         this.assignSystems();
         this.running = true;
