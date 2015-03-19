@@ -7,7 +7,6 @@ var Game = {
     canvas: null,
     context: null,
     entities: {},
-    runSys: [],
     running: null,
 
     init: function (canvas) {
@@ -19,18 +18,13 @@ var Game = {
         // set ctx
         this.context = canvas.getContext('2d');
 
-        // initialize entities 
+        // initialize entities
         this.addEntity({
             'Appearance': null,
-            'Position' : {
-                x: 20 + Math.random() * (this.canvas.width - 20) | 0,
-                y: 20 + Math.random() * (this.canvas.height - 20) | 0
-            }
+            'Position' : null
         }, 20);
 
-        // this.assignSystems();
         this.running = true;
-        console.log(this.context);
         this.tick();
     },
 
@@ -41,8 +35,8 @@ var Game = {
     // {
     //     'Appearance': null,
     //     'Position' : {
-    //         x: 20 + Math.random() * (this.canvas.width - 20) | 0,
-    //         y: 20 + Math.random() * (this.canvas.height - 20) | 0
+    //         x: 45,
+    //         y: 120
     //     }
     // }
     //
@@ -60,7 +54,7 @@ var Game = {
         } else {
             entity = new Entity();
             this.addComponents(entity, comps);
-            this.entities[entity.id] = entity;    
+            this.entities[entity.id] = entity;
         }
     },
 
@@ -74,23 +68,9 @@ var Game = {
         }
     },
 
-    assignSystems: function () {
-        // setup systems
-        if (!systems) throw new Error('You must have at least 1 system defined.');
-
-        console.log('systems', systems);
-
-        for (var system in systems) {
-            this.runSys.push(systems[system]);
-        }
-    },
-
     tick: function () {
         var self = this;
         // TODO: create a controller layer that decides which entities go to which system
-        // for (var i = 0; i < this.runSys.length; i++) {
-        //     this.runSys[i](this.entities);
-        // }
 
         debugger;
 
@@ -99,7 +79,7 @@ var Game = {
         }
 
         if (self.running) {
-            window.requestAnimationFrame(self.tick);
+            window.requestAnimationFrame(this.tick.bind(self));
         }
     },
 
@@ -111,4 +91,4 @@ var Game = {
 
 window.Game = Game;
 
-export default Game;
+// export default Game;
