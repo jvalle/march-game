@@ -1,8 +1,7 @@
 import Render from './Render';
 
 var systems = {
-	Render: Render,
-	Test  : function () { }
+    Render: Render
 };
 
 export default systems;

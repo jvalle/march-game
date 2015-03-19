@@ -8,9 +8,9 @@ components.Appearance = function (opts) {
     this.color = options.color;
     if (!this.color) {
         this.color = {
-            r: 0,
-            g: 100,
-            b: 150
+            r: Math.random() * 255 | 0,
+            g: Math.random() * 255 | 0,
+            b: Math.random() * 255 | 0
         };
     }
 
