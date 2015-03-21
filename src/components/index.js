@@ -1,5 +1,4 @@
 // Organize components here -- could modularize if necessary
-
 var components = {};
 
 components.Appearance = function (opts) {
@@ -53,4 +52,4 @@ components.Collision = function () {
 };
 components.Collision.prototype.name = 'collision';
 
-export default components;
+module.exports = components;

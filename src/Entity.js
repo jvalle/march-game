@@ -1,5 +1,5 @@
 
-export default function Entity () {
+module.exports = Entity = function () {
     // generate a psuedo random ID
     this.id = (+new Date()).toString(16) + Entity.prototype._count++;
 

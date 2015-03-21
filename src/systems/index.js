@@ -1,7 +1,7 @@
-import Render from './Render';
+var Render = require('./Render');
 
 var systems = {
     Render: Render
 };
 
-export default systems;
+module.exports = systems;

@@ -1,5 +1,5 @@
 // a render system
-// import Game from '../game'
+var Game = require('../game.js');
 
 function clearCanvas () {
     Game.context.save();
@@ -7,7 +7,7 @@ function clearCanvas () {
     Game.context.restore();
 }
 
-export default function (entities) {
+module.exports = function (entities) {
     clearCanvas();
 
     var curEntity, curComps, fillStyle;

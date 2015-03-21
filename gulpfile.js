@@ -24,7 +24,7 @@ gulp.task('lint', function () {
 
 gulp.task('js', function () {
     var browserify = require('browserify'),
-    	es6ify = require('es6ify'),
+    	// es6ify = require('es6ify'),
         uglify = require('gulp-uglify'),
         buffer = require('vinyl-buffer');
 
@@ -34,12 +34,12 @@ gulp.task('js', function () {
 
     var bundle = function() {
         return bundler
-        	.add(es6ify.runtime)
-        	.transform(es6ify)
+        	// .add(es6ify.runtime)
+        	// .transform(es6ify)
             .bundle()
             .pipe(source(files.js[0]))
             .pipe(buffer())
-            .pipe(uglify())
+            // .pipe(uglify())
             .pipe(gulp.dest('./dist/'));
     };
 
