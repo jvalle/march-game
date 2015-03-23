@@ -1,7 +1,9 @@
 import Render from './Render';
+import Velocity from './Physics';
 
 var systems = {
-    Render: Render
+    Velocity : Velocity,
+    Render   : Render
 };
 
 export default systems;

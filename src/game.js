@@ -21,26 +21,13 @@ var Game = {
         // initialize entities
         this.addEntity({
             'Appearance': null,
-            'Position' : null
+            'Position' : null,
+            'Velocity' : null
         }, 20);
 
         this.running = true;
         this.tick();
     },
-
-    // The add Entity function takes a components object with the components that you'd like
-    // to add to the entity.  You can pass an options object along to define the component
-    // properties, or null for the default component properties.  Of the following form:
-    //
-    // {
-    //     'Appearance': null,
-    //     'Position' : {
-    //         x: 45,
-    //         y: 120
-    //     }
-    // }
-    //
-    // addEntity also takes an optional no parameter, if passed it will add that number of entities.
 
     addEntity: function (comps, no) {
         var entity;
@@ -70,9 +57,8 @@ var Game = {
 
     tick: function () {
         var self = this;
-        // TODO: create a controller layer that decides which entities go to which system
 
-        debugger;
+        // TODO: create a controller layer that decides which entities go to which system
 
         for (var system in systems) {
             systems[system](self.entities);

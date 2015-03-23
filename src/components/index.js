@@ -20,15 +20,6 @@ components.Appearance = function (opts) {
 }
 components.Appearance.prototype.name = 'appearance';
 
-components.Health = function (opts) {
-    var options = opts || {};
-
-    this.value = options.value || 100;
-
-    return this;
-};
-components.Health.prototype.name = 'health';
-
 components.Position = function (opts) {
     var options = opts || {};
 
@@ -38,6 +29,25 @@ components.Position = function (opts) {
     return this;
 };
 components.Position.prototype.name = 'position';
+
+components.Velocity = function (opts) {
+    var options = opts || {};
+
+    this.x = options.x || Math.round(Math.random()) ? Math.random() * -1 : Math.random();
+    this.y = options.y || Math.round(Math.random()) ? Math.random() * -1 : Math.random();
+
+    return this;
+};
+components.Velocity.prototype.name = 'velocity';
+
+components.Health = function (opts) {
+    var options = opts || {};
+
+    this.value = options.value || 100;
+
+    return this;
+};
+components.Health.prototype.name = 'health';
 
 components.PlayerControlled = function () {
     this.pc = true;
