@@ -15,6 +15,7 @@ var Game = {
     if (!canvas) {
       throw new Error('Game must be initialized on a canvas element.');
     }
+    console.log(canvas);
     this.canvas = canvas;
     this.context = canvas.getContext('2d');
     this.addEntity({
@@ -64,7 +65,7 @@ var Game = {
 window.Game = Game;
 
 
-//# sourceURL=/Users/jason/dev/march-game/src/game.js
+//# sourceURL=/Users/jvalle/dev/march-game/src/game.js
 },{"./Entity":5,"./components/":6,"./systems/":9}],2:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
@@ -2956,7 +2957,7 @@ Entity.prototype.print = function() {
 };
 
 
-//# sourceURL=/Users/jason/dev/march-game/src/Entity.js
+//# sourceURL=/Users/jvalle/dev/march-game/src/Entity.js
 },{}],6:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -3013,7 +3014,7 @@ components.Collision.prototype.name = 'collision';
 var $__default = components;
 
 
-//# sourceURL=/Users/jason/dev/march-game/src/components/index.js
+//# sourceURL=/Users/jvalle/dev/march-game/src/components/index.js
 },{}],7:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -3037,7 +3038,7 @@ var $__default = function(entities) {
 ;
 
 
-//# sourceURL=/Users/jason/dev/march-game/src/systems/Physics.js
+//# sourceURL=/Users/jvalle/dev/march-game/src/systems/Physics.js
 },{}],8:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -3068,7 +3069,7 @@ var $__default = function(entities) {
 ;
 
 
-//# sourceURL=/Users/jason/dev/march-game/src/systems/Render.js
+//# sourceURL=/Users/jvalle/dev/march-game/src/systems/Render.js
 },{}],9:[function(require,module,exports){
 "use strict";
 Object.defineProperties(exports, {
@@ -3088,5 +3089,5 @@ var systems = {
 var $__default = systems;
 
 
-//# sourceURL=/Users/jason/dev/march-game/src/systems/index.js
+//# sourceURL=/Users/jvalle/dev/march-game/src/systems/index.js
 },{"./Physics":7,"./Render":8}]},{},[1,4]);
