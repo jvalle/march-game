@@ -1,14 +1,12 @@
-// a render system
-// import Game from '../game'
 
-function clearCanvas () {
-    Game.context.save();
-    Game.context.clearRect(0, 0, Game.canvas.width, Game.canvas.height);
-    Game.context.restore();
+function clearCanvas (options) {
+    options.context.save();
+    options.context.clearRect(0, 0, options.canvas.width, options.canvas.height);
+    options.context.restore();
 }
 
-export default function (entities) {
-    clearCanvas();
+export default function (entities, options) {
+    clearCanvas(options);
 
     var curEntity, curComps, fillStyle;
 
@@ -25,9 +23,9 @@ export default function (entities) {
                 curComps.appearance.color.b,
             ] + ', 1)';
 
-            Game.context.fillStyle = fillStyle;
+            options.context.fillStyle = fillStyle;
 
-            Game.context.fillRect(
+            options.context.fillRect(
                 curComps.position.x - curComps.appearance.size,
                 curComps.position.y - curComps.appearance.size,
                 curComps.appearance.size * 2,

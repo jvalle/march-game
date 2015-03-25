@@ -2,49 +2,47 @@ import Entity from './Entity';
 import components from './components/';
 import systems from './systems/';
 
-var Game = {
+var Game = (function (options) {
+    var options  = options || {},
+        entities = {};
 
-    canvas: null,
-    context: null,
-    entities: {},
-    running: null,
-
-    init: function (canvas) {
+    function init (canvas) {
         // set canvas el
         if (!canvas) throw new Error('Game must be initialized on a canvas element.');
+        if (options.running) throw new Error('Game is already running, homie!');
 
-        this.canvas = canvas;
+        options.canvas = canvas;
         // set ctx
-        this.context = canvas.getContext('2d');
+        options.context = canvas.getContext('2d');
 
         // initialize entities
-        this.addEntity({
+        addEntity({
             'Appearance': null,
             'Position' : null,
             'Velocity' : null
         }, 20);
 
-        this.running = true;
-        this.tick();
-    },
+        options.running = true;
+        tick();
+    }
 
-    addEntity: function (comps, no) {
+    function addEntity (comps, no) {
         var entity;
 
         if (no) {
             for (var i = 0; i < no; i++) {
                 entity = new Entity();
-                this.addComponents(entity, comps);
-                this.entities[entity.id] = entity;
+                addComponents(entity, comps);
+                entities[entity.id] = entity;
             }
         } else {
             entity = new Entity();
-            this.addComponents(entity, comps);
-            this.entities[entity.id] = entity;
+            addComponents(entity, comps);
+            entities[entity.id] = entity;
         }
-    },
+    }
 
-    addComponents: function (ent, comps) {
+    function addComponents (ent, comps) {
         for (var comp in comps) {
             if (comps[comp]) {
                 ent.addComponent(new components[comp](comps[comp]));
@@ -52,28 +50,25 @@ var Game = {
                 ent.addComponent(new components[comp]());
             }
         }
-    },
+    }
 
-    tick: function () {
+    function tick () {
         var self = this;
-
         // TODO: create a controller layer that decides which entities go to which system
 
         for (var system in systems) {
-            systems[system](self.entities);
+            systems[system](entities, options);
         }
 
-        if (self.running) {
-            window.requestAnimationFrame(this.tick.bind(self));
+        if (options.running) {
+            window.requestAnimationFrame(tick.bind(self));
         }
-    },
-
-    endGame: function () {
-        //endgame steps
-        this.running = false;
     }
-};
+
+    return {
+        init: init
+    };
+
+})();
 
 window.Game = Game;
-
-// export default Game;

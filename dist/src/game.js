@@ -6,41 +6,39 @@ var $__Entity__,
 var Entity = ($__Entity__ = require("./Entity"), $__Entity__ && $__Entity__.__esModule && $__Entity__ || {default: $__Entity__}).default;
 var components = ($__components_47___ = require("./components/"), $__components_47___ && $__components_47___.__esModule && $__components_47___ || {default: $__components_47___}).default;
 var systems = ($__systems_47___ = require("./systems/"), $__systems_47___ && $__systems_47___.__esModule && $__systems_47___ || {default: $__systems_47___}).default;
-var Game = {
-  canvas: null,
-  context: null,
-  entities: {},
-  running: null,
-  init: function(canvas) {
-    if (!canvas) {
+var Game = (function(options) {
+  var options = options || {},
+      entities = {};
+  function init(canvas) {
+    if (!canvas)
       throw new Error('Game must be initialized on a canvas element.');
-    }
-    console.log(canvas);
-    this.canvas = canvas;
-    this.context = canvas.getContext('2d');
-    this.addEntity({
+    if (options.running)
+      throw new Error('Game is already running, homie!');
+    options.canvas = canvas;
+    options.context = canvas.getContext('2d');
+    addEntity({
       'Appearance': null,
       'Position': null,
       'Velocity': null
     }, 20);
-    this.running = true;
-    this.tick();
-  },
-  addEntity: function(comps, no) {
+    options.running = true;
+    tick();
+  }
+  function addEntity(comps, no) {
     var entity;
     if (no) {
       for (var i = 0; i < no; i++) {
         entity = new Entity();
-        this.addComponents(entity, comps);
-        this.entities[entity.id] = entity;
+        addComponents(entity, comps);
+        entities[entity.id] = entity;
       }
     } else {
       entity = new Entity();
-      this.addComponents(entity, comps);
-      this.entities[entity.id] = entity;
+      addComponents(entity, comps);
+      entities[entity.id] = entity;
     }
-  },
-  addComponents: function(ent, comps) {
+  }
+  function addComponents(ent, comps) {
     for (var comp in comps) {
       if (comps[comp]) {
         ent.addComponent(new components[comp](comps[comp]));
@@ -48,20 +46,18 @@ var Game = {
         ent.addComponent(new components[comp]());
       }
     }
-  },
-  tick: function() {
+  }
+  function tick() {
     var self = this;
     for (var system in systems) {
-      systems[system](self.entities);
+      systems[system](entities, options);
     }
-    if (self.running) {
-      window.requestAnimationFrame(this.tick.bind(self));
+    if (options.running) {
+      window.requestAnimationFrame(tick.bind(self));
     }
-  },
-  endGame: function() {
-    this.running = false;
   }
-};
+  return {init: init};
+})();
 window.Game = Game;
 
 
@@ -3047,13 +3043,13 @@ Object.defineProperties(exports, {
     }},
   __esModule: {value: true}
 });
-function clearCanvas() {
-  Game.context.save();
-  Game.context.clearRect(0, 0, Game.canvas.width, Game.canvas.height);
-  Game.context.restore();
+function clearCanvas(options) {
+  options.context.save();
+  options.context.clearRect(0, 0, options.canvas.width, options.canvas.height);
+  options.context.restore();
 }
-var $__default = function(entities) {
-  clearCanvas();
+var $__default = function(entities, options) {
+  clearCanvas(options);
   var curEntity,
       curComps,
       fillStyle;
@@ -3061,8 +3057,8 @@ var $__default = function(entities) {
     curEntity = entities[entityId], curComps = curEntity.components;
     if (curComps.appearance && curComps.position) {
       fillStyle = 'rgba(' + [curComps.appearance.color.r, curComps.appearance.color.g, curComps.appearance.color.b] + ', 1)';
-      Game.context.fillStyle = fillStyle;
-      Game.context.fillRect(curComps.position.x - curComps.appearance.size, curComps.position.y - curComps.appearance.size, curComps.appearance.size * 2, curComps.appearance.size * 2);
+      options.context.fillStyle = fillStyle;
+      options.context.fillRect(curComps.position.x - curComps.appearance.size, curComps.position.y - curComps.appearance.size, curComps.appearance.size * 2, curComps.appearance.size * 2);
     }
   }
 };
