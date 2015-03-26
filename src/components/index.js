@@ -23,8 +23,8 @@ components.Appearance.prototype.name = 'appearance';
 components.Position = function (opts) {
     var options = opts || {};
 
-    this.x = options.x || 20 + (Math.random() * 100 | 0);
-    this.y = options.y || 20 + (Math.random() * 100 | 0);
+    this.x = options.x || 20 + (Math.random() * 800 | 0);
+    this.y = options.y || 20 + (Math.random() * 600 | 0);
 
     return this;
 };

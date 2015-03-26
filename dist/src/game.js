@@ -16,11 +16,36 @@ var Game = (function(options) {
       throw new Error('Game is already running, homie!');
     options.canvas = canvas;
     options.context = canvas.getContext('2d');
-    addEntity({
-      'Appearance': null,
-      'Position': null,
-      'Velocity': null
-    }, 20);
+    for (var i = 1; i < 11; i++) {
+      addEntity({
+        'Appearance': {
+          size: 10,
+          color: {
+            r: 255,
+            g: i * 20,
+            b: 0
+          }
+        },
+        'Position': {
+          x: i * 63 + (i - 1) * 10,
+          y: 100
+        }
+      });
+      addEntity({
+        'Appearance': {
+          size: 10,
+          color: {
+            r: 0,
+            g: i * 20,
+            b: 255
+          }
+        },
+        'Position': {
+          x: i * 63 + (i - 1) * 10,
+          y: 500
+        }
+      });
+    }
     options.running = true;
     tick();
   }
@@ -2979,8 +3004,8 @@ components.Appearance = function(opts) {
 components.Appearance.prototype.name = 'appearance';
 components.Position = function(opts) {
   var options = opts || {};
-  this.x = options.x || 20 + (Math.random() * 100 | 0);
-  this.y = options.y || 20 + (Math.random() * 100 | 0);
+  this.x = options.x || 20 + (Math.random() * 800 | 0);
+  this.y = options.y || 20 + (Math.random() * 600 | 0);
   return this;
 };
 components.Position.prototype.name = 'position';

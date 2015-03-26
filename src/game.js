@@ -16,11 +16,37 @@ var Game = (function (options) {
         options.context = canvas.getContext('2d');
 
         // initialize entities
-        addEntity({
-            'Appearance': null,
-            'Position' : null,
-            'Velocity' : null
-        }, 20);
+        for (var i = 1; i < 11; i++) {
+            addEntity({
+                'Appearance': {
+                    size: 10,
+                    color: {
+                        r: 255,
+                        g: i * 20,
+                        b: 0
+                    }
+                },
+                'Position': {
+                    x: i * 63 + (i - 1) * 10,
+                    y: 100
+                }
+            });
+
+            addEntity({
+                'Appearance': {
+                    size: 10,
+                    color: {
+                        r: 0,
+                        g: i * 20,
+                        b: 255
+                    }
+                },
+                'Position': {
+                    x: i * 63 + (i - 1) * 10,
+                    y: 500
+                }
+            });
+        }
 
         options.running = true;
         tick();
