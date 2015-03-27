@@ -2,21 +2,22 @@ import Entity from './Entity';
 import components from './components/';
 import systems from './systems/';
 
-var Game = (function (options) {
+const Game = ((options) => {
     var options  = options || {},
-        entities = {};
+          entities = {};
 
     function init (canvas) {
         // set canvas el
         if (!canvas) throw new Error('Game must be initialized on a canvas element.');
         if (options.running) throw new Error('Game is already running, homie!');
 
+        // set canvas
         options.canvas = canvas;
         // set ctx
         options.context = canvas.getContext('2d');
 
         // initialize entities
-        for (var i = 1; i < 11; i++) {
+        for (let i = 1; i < 11; i++) {
             addEntity({
                 'Appearance': {
                     size: 10,
@@ -29,6 +30,10 @@ var Game = (function (options) {
                 'Position': {
                     x: i * 63 + (i - 1) * 10,
                     y: 100
+                },
+                'Velocity': {
+                    x: 0,
+                    y: 1
                 }
             });
 
@@ -56,7 +61,7 @@ var Game = (function (options) {
         var entity;
 
         if (no) {
-            for (var i = 0; i < no; i++) {
+            for (let i = 0; i < no; i++) {
                 entity = new Entity();
                 addComponents(entity, comps);
                 entities[entity.id] = entity;
@@ -69,7 +74,7 @@ var Game = (function (options) {
     }
 
     function addComponents (ent, comps) {
-        for (var comp in comps) {
+        for (let comp in comps) {
             if (comps[comp]) {
                 ent.addComponent(new components[comp](comps[comp]));
             } else {
@@ -82,7 +87,7 @@ var Game = (function (options) {
         var self = this;
         // TODO: create a controller layer that decides which entities go to which system
 
-        for (var system in systems) {
+        for (let system in systems) {
             systems[system](entities, options);
         }
 

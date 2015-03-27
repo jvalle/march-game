@@ -33,8 +33,8 @@ components.Position.prototype.name = 'position';
 components.Velocity = function (opts) {
     var options = opts || {};
 
-    this.x = options.x || Math.round(Math.random()) ? Math.random() * -1 : Math.random();
-    this.y = options.y || Math.round(Math.random()) ? Math.random() * -1 : Math.random();
+    this.x = options.x;
+    this.y = options.y;
 
     return this;
 };

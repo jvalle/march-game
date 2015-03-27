@@ -6,7 +6,7 @@ var $__Entity__,
 var Entity = ($__Entity__ = require("./Entity"), $__Entity__ && $__Entity__.__esModule && $__Entity__ || {default: $__Entity__}).default;
 var components = ($__components_47___ = require("./components/"), $__components_47___ && $__components_47___.__esModule && $__components_47___ || {default: $__components_47___}).default;
 var systems = ($__systems_47___ = require("./systems/"), $__systems_47___ && $__systems_47___.__esModule && $__systems_47___ || {default: $__systems_47___}).default;
-var Game = (function(options) {
+var Game = ((function(options) {
   var options = options || {},
       entities = {};
   function init(canvas) {
@@ -29,6 +29,10 @@ var Game = (function(options) {
         'Position': {
           x: i * 63 + (i - 1) * 10,
           y: 100
+        },
+        'Velocity': {
+          x: 0,
+          y: 1
         }
       });
       addEntity({
@@ -82,7 +86,7 @@ var Game = (function(options) {
     }
   }
   return {init: init};
-})();
+}))();
 window.Game = Game;
 
 
@@ -3011,8 +3015,8 @@ components.Position = function(opts) {
 components.Position.prototype.name = 'position';
 components.Velocity = function(opts) {
   var options = opts || {};
-  this.x = options.x || Math.round(Math.random()) ? Math.random() * -1 : Math.random();
-  this.y = options.y || Math.round(Math.random()) ? Math.random() * -1 : Math.random();
+  this.x = options.x;
+  this.y = options.y;
   return this;
 };
 components.Velocity.prototype.name = 'velocity';
@@ -3044,7 +3048,7 @@ Object.defineProperties(exports, {
     }},
   __esModule: {value: true}
 });
-var $__default = function(entities) {
+var $__default = (function(entities) {
   var curEntity,
       curComps;
   for (var entityId in entities) {
@@ -3055,8 +3059,7 @@ var $__default = function(entities) {
       curComps.position.y += curComps.velocity.y;
     }
   }
-};
-;
+});
 
 
 //# sourceURL=/Users/jvalle/dev/march-game/src/systems/Physics.js
@@ -3073,7 +3076,7 @@ function clearCanvas(options) {
   options.context.clearRect(0, 0, options.canvas.width, options.canvas.height);
   options.context.restore();
 }
-var $__default = function(entities, options) {
+var $__default = (function(entities, options) {
   clearCanvas(options);
   var curEntity,
       curComps,
@@ -3086,8 +3089,7 @@ var $__default = function(entities, options) {
       options.context.fillRect(curComps.position.x - curComps.appearance.size, curComps.position.y - curComps.appearance.size, curComps.appearance.size * 2, curComps.appearance.size * 2);
     }
   }
-};
-;
+});
 
 
 //# sourceURL=/Users/jvalle/dev/march-game/src/systems/Render.js

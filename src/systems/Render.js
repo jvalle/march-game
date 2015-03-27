@@ -5,7 +5,7 @@ function clearCanvas (options) {
     options.context.restore();
 }
 
-export default function (entities, options) {
+export default (entities, options) => {
     clearCanvas(options);
 
     var curEntity, curComps, fillStyle;

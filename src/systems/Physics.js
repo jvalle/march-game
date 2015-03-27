@@ -1,10 +1,10 @@
 // Physics system -- currently only handling velocity.
 
-export default function (entities) {
+export default (entities) => {
 
     var curEntity, curComps;
 
-    for (var entityId in entities) {
+    for (let entityId in entities) {
         curEntity = entities[entityId];
         curComps  = curEntity.components;
 
