@@ -6,8 +6,8 @@ var $__Entity__,
 var Entity = ($__Entity__ = require("./Entity"), $__Entity__ && $__Entity__.__esModule && $__Entity__ || {default: $__Entity__}).default;
 var components = ($__components_47___ = require("./components/"), $__components_47___ && $__components_47___.__esModule && $__components_47___ || {default: $__components_47___}).default;
 var systems = ($__systems_47___ = require("./systems/"), $__systems_47___ && $__systems_47___.__esModule && $__systems_47___ || {default: $__systems_47___}).default;
-var Game = ((function(options) {
-  var options = options || {},
+var Game = ((function(opts) {
+  var options = opts || {},
       entities = {};
   function init(canvas) {
     if (!canvas)

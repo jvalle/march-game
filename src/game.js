@@ -2,8 +2,8 @@ import Entity from './Entity';
 import components from './components/';
 import systems from './systems/';
 
-const Game = ((options) => {
-    var options  = options || {},
+const Game = ((opts) => {
+    const options  = opts || {},
           entities = {};
 
     function init (canvas) {
