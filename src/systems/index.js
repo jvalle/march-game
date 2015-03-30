@@ -1,9 +1,11 @@
 import Render from './Render';
 import Velocity from './Physics';
+import UserInput from './UserInput';
 
 var systems = {
-    Velocity : Velocity,
-    Render   : Render
+	UserInput : UserInput,
+    Velocity  : Velocity,
+    Render    : Render
 };
 
 export default systems;

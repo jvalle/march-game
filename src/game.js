@@ -22,25 +22,6 @@ const Game = ((opts) => {
                 'Appearance': {
                     size: 10,
                     color: {
-                        r: 255,
-                        g: i * 20,
-                        b: 0
-                    }
-                },
-                'Position': {
-                    x: i * 63 + (i - 1) * 10,
-                    y: 100
-                },
-                'Velocity': {
-                    x: 0,
-                    y: 1
-                }
-            });
-
-            addEntity({
-                'Appearance': {
-                    size: 10,
-                    color: {
                         r: 0,
                         g: i * 20,
                         b: 255
@@ -52,6 +33,22 @@ const Game = ((opts) => {
                 }
             });
         }
+
+        addEntity({
+            'Appearance': {
+                size: 10,
+                color: {
+                    r: 0,
+                    g: 255,
+                    b: 255
+                }
+            },
+            'Position': {
+                x: 400,
+                y: 500
+            },
+            'PlayerControlled': null
+        });
 
         options.running = true;
         tick();

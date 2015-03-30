@@ -21,24 +21,6 @@ var Game = ((function(opts) {
         'Appearance': {
           size: 10,
           color: {
-            r: 255,
-            g: i * 20,
-            b: 0
-          }
-        },
-        'Position': {
-          x: i * 63 + (i - 1) * 10,
-          y: 100
-        },
-        'Velocity': {
-          x: 0,
-          y: 1
-        }
-      });
-      addEntity({
-        'Appearance': {
-          size: 10,
-          color: {
             r: 0,
             g: i * 20,
             b: 255
@@ -50,6 +32,21 @@ var Game = ((function(opts) {
         }
       });
     }
+    addEntity({
+      'Appearance': {
+        size: 10,
+        color: {
+          r: 0,
+          g: 255,
+          b: 255
+        }
+      },
+      'Position': {
+        x: 400,
+        y: 500
+      },
+      'PlayerControlled': null
+    });
     options.running = true;
     tick();
   }
@@ -91,7 +88,7 @@ window.Game = Game;
 
 
 //# sourceURL=/Users/jvalle/dev/march-game/src/game.js
-},{"./Entity":5,"./components/":6,"./systems/":9}],2:[function(require,module,exports){
+},{"./Entity":5,"./components/":6,"./systems/":10}],2:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -3101,11 +3098,63 @@ Object.defineProperties(exports, {
     }},
   __esModule: {value: true}
 });
+var currentKeys = {},
+    tick_count = 0,
+    speed = 10;
+var keyMap = {
+  37: 'left',
+  38: 'up',
+  39: 'right',
+  40: 'down'
+};
+function init() {
+  document.addEventListener('keydown', setKey);
+}
+;
+function setKey(evt) {
+  currentKeys[keyMap[evt.keyCode]] = true;
+}
+;
+var $__default = (function(entities, options) {
+  if (tick_count === 0)
+    init();
+  var curEntity,
+      curComps;
+  for (var entityId in entities) {
+    curEntity = entities[entityId], curComps = curEntity.components;
+    if (curComps.playerControlled) {
+      if (currentKeys.up)
+        curComps.position.y -= speed;
+      if (currentKeys.down)
+        curComps.position.y += speed;
+      if (currentKeys.left)
+        curComps.position.x -= speed;
+      if (currentKeys.right)
+        curComps.position.x += speed;
+    }
+  }
+  currentKeys = {};
+  tick_count++;
+});
+
+
+//# sourceURL=/Users/jvalle/dev/march-game/src/systems/UserInput.js
+},{}],10:[function(require,module,exports){
+"use strict";
+Object.defineProperties(exports, {
+  default: {get: function() {
+      return $__default;
+    }},
+  __esModule: {value: true}
+});
 var $__Render__,
-    $__Physics__;
+    $__Physics__,
+    $__UserInput__;
 var Render = ($__Render__ = require("./Render"), $__Render__ && $__Render__.__esModule && $__Render__ || {default: $__Render__}).default;
 var Velocity = ($__Physics__ = require("./Physics"), $__Physics__ && $__Physics__.__esModule && $__Physics__ || {default: $__Physics__}).default;
+var UserInput = ($__UserInput__ = require("./UserInput"), $__UserInput__ && $__UserInput__.__esModule && $__UserInput__ || {default: $__UserInput__}).default;
 var systems = {
+  UserInput: UserInput,
   Velocity: Velocity,
   Render: Render
 };
@@ -3113,4 +3162,4 @@ var $__default = systems;
 
 
 //# sourceURL=/Users/jvalle/dev/march-game/src/systems/index.js
-},{"./Physics":7,"./Render":8}]},{},[1,4]);
+},{"./Physics":7,"./Render":8,"./UserInput":9}]},{},[1,4]);
